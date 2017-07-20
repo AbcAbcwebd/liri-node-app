@@ -1,0 +1,29 @@
+{
+  "name": "liri-node-app",
+  "version": "1.0.0",
+  "description": "(Language interpretation and recognizion interface)",
+  "main": "index.js",
+  "scripts": {
+    "test": "console.log(\\\"test\\\");"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AbcAbcwebd/liri-node-app.git"
+  },
+  "keywords": [
+    "nodejs",
+    "Twitter",
+    "spotify",
+    "OMDb"
+  ],
+  "author": "Owen Essen",
+  "license": "",
+  "bugs": {
+    "url": "https://github.com/AbcAbcwebd/liri-node-app/issues"
+  },
+  "homepage": "https://github.com/AbcAbcwebd/liri-node-app#readme",
+  "dependencies": {
+    "node-spotify-api": "^1.0.5",
+    "twitter": "^1.7.1"
+  }
+}
