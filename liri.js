@@ -24,10 +24,10 @@ var accessCodes = twitterKeys.twitterKeys;
 console.log(accessCodes)
 var t = new Twitter(accessCodes);
 var params = {
-q: "Mark",
-count: 1
+//q: "",
+//count: 1
 } // this is the param variable which will have key and value ,the key is the keyword which we are interested in searching and count is the count of it
-t.get('search/tweets', params,searchedData); // get is the 
+t.get('statuses/user_timeline.json', params,searchedData); // get is the 
 /*function to search the tweet which three paramaters 'search/tweets'
 ,params and a callback function.*/
 function searchedData(err, data, response) {
