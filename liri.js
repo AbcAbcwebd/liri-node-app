@@ -40,13 +40,40 @@ function checkSpotify(){
 			console.log("Album: " + data.tracks.items[1].album.name); 
 		}); 
 	} else {
-		// Best to avoid unneccesary API calls. 
+		// To avoid unneccesary API calls. 
 		console.log("Artist: Ace of Base"); 
 		console.log("Song name: The Sign"); 
 		console.log("Listen at: https://play.spotify.com/track/3DYVWvPh3kGwPasp7yjahc?play=true&utm_source=open.spotify.com&utm_medium=open"); 
 		console.log("Album: The Sign"); 
 	}
 };
+
+function findMovie(){
+	var queryUrl = "http://www.omdbapi.com/?t=" + "Jaws" + "&y=&plot=short&apikey=40e9cece";
+	request(queryUrl, function (error, response, body) {
+		if (error){
+		  	console.log(error);
+		  	return;
+		};
+//		console.log(body);
+		body = JSON.parse(body);
+
+/*		for (var key in body){
+			console.log(key)
+			console.log(body[key])
+		}; */
+
+		console.log("Title: " + body.Title);
+		console.log("Release year: " + body.Year);
+		console.log("IMDb Rating: " + body.Ratings[0].Value);
+		console.log("Rotten Tomatoes Score: " + body.Ratings[1].Value);
+		console.log("Country of production: " + body.Country);
+		console.log("Language: " + body.Language);
+		console.log("Plot: " + body.Plot);
+		console.log("Cast: " + body.Actors);
+	});
+};
+findMovie();
 
 /*
 // Interprets user's commands 
@@ -65,6 +92,3 @@ switch(command) {
         break;
 };
 */
-
-// 8b96941a05b8461eb5eeb6dcb6e4de80
-// a7a7ef39d65441da889a20b71a623037
