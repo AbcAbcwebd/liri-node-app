@@ -7,6 +7,18 @@ var accessCodes = twitterKeys.twitterKeys;
 var Spotify = require('node-spotify-api');
 var fs = require('fs');
 
+// To accomodate multi-word inputs
+if (process.argv[4]){
+	userParameter = "";
+	var inputParams = process.argv.slice(2);
+	for (var i = 0; i < inputParams.length; i++){
+		if (i > 0){
+			userParameter = userParameter + " ";
+		}
+		userParameter = userParameter + inputParams[i];
+	};
+};
+
 function pullTweets(){
 	var t = new Twitter(accessCodes);
 	var params = {
@@ -103,3 +115,5 @@ function checkInput(){
 	        break;
 	};
 };
+
+checkInput();
