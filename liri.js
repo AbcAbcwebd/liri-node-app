@@ -5,6 +5,7 @@ var userParameter = process.argv[3];
 var Twitter = require('twitter');
 var accessCodes = twitterKeys.twitterKeys;
 var Spotify = require('node-spotify-api');
+var fs = require('fs');
 
 function pullTweets(){
 	var t = new Twitter(accessCodes);
@@ -72,21 +73,33 @@ function findMovie(){
 	});
 };
 
+function doWhatItSays(){
+	fs.readFile("./random.txt", "utf8", function(error, data){
+		if (error){
+			return console.log(error);
+		};
 
-/*
-// Interprets user's commands 
-switch(command) {
-    case "my-tweets":
-        pullTweets();
-        break;
-    case "spotify-this-song":
-        checkSpotify();
-        break;
-    case "movie-this":
-        findMovie();
-        break;
-    case "do-what-it-says":
-        code block
-        break;
+		command = data.split(",")[0];
+		userParameter = data.split(",")[1];
+		checkInput();
+	});
 };
-*/
+
+
+function checkInput(){
+	// Interprets user's commands 
+	switch(command) {
+	    case "my-tweets":
+	        pullTweets();
+	        break;
+	    case "spotify-this-song":
+	        checkSpotify();
+	        break;
+	    case "movie-this":
+	        findMovie();
+	        break;
+	    case "do-what-it-says":
+	        doWhatItSays();
+	        break;
+	};
+};
