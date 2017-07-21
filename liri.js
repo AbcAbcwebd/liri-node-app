@@ -19,6 +19,13 @@ if (process.argv[4]){
 	};
 };
 
+function logResults(result){
+	fs.appendFile('./log.txt', result, function (err) {
+	  if (err) throw err;
+	  console.log('Saved!');
+	});
+};
+
 function pullTweets(){
 	var t = new Twitter(accessCodes);
 	var params = {
@@ -31,6 +38,11 @@ function pullTweets(){
 			console.log(data[key].text);
 			console.log(data[key].created_at);
 			console.log("------------------------");
+
+			logResults("------------------------");
+			logResults(data[key].text);
+			logResults(data[key].created_at);
+			logResults("------------------------");
 		};
 	}
 }
@@ -51,6 +63,11 @@ function checkSpotify(){
 			console.log("Song name: " + data.tracks.items[1].name); 
 			console.log("Listen at: " + data.tracks.items[1].external_urls.spotify); 
 			console.log("Album: " + data.tracks.items[1].album.name); 
+
+			logResults("Artist: " + data.tracks.items[1].artists[0].name);
+			logResults("Song name: " + data.tracks.items[1].name);
+			logResults("Listen at: " + data.tracks.items[1].external_urls.spotify);
+			logResults("Album: " + data.tracks.items[1].album.name);
 		}); 
 	} else {
 		// To avoid unneccesary API calls. 
@@ -58,6 +75,11 @@ function checkSpotify(){
 		console.log("Song name: The Sign"); 
 		console.log("Listen at: https://play.spotify.com/track/3DYVWvPh3kGwPasp7yjahc?play=true&utm_source=open.spotify.com&utm_medium=open"); 
 		console.log("Album: The Sign"); 
+
+		logResults("Artist: Ace of Base");
+		logResults("Song name: The Sign");
+		logResults("Listen at: https://play.spotify.com/track/3DYVWvPh3kGwPasp7yjahc?play=true&utm_source=open.spotify.com&utm_medium=open");
+		logResults("Album: The Sign");
 	}
 };
 
@@ -82,6 +104,15 @@ function findMovie(){
 		console.log("Language: " + body.Language);
 		console.log("Plot: " + body.Plot);
 		console.log("Cast: " + body.Actors);
+
+		logResults("Title: " + body.Title);
+		logResults("Release year: " + body.Year);
+		logResults("IMDb Rating: " + body.Ratings[0].Value);
+		logResults("Rotten Tomatoes Score: " + body.Ratings[1].Value);
+		logResults("Country of production: " + body.Country);
+		logResults("Language: " + body.Language);
+		logResults("Plot: " + body.Plot);
+		logResults("Cast: " + body.Actors);
 	});
 };
 
