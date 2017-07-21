@@ -9,7 +9,6 @@ var fs = require('fs');
 
 // To accomodate multi-word inputs
 if (process.argv[4]){
-	console.log("Concanting")
 	userParameter = "";
 	var inputParams = process.argv.slice(3);
 	for (var i = 0; i < inputParams.length; i++){
@@ -18,7 +17,6 @@ if (process.argv[4]){
 		}
 		userParameter = userParameter + inputParams[i];
 	};
-	console.log(userParameter)
 };
 
 function logResults(result){
