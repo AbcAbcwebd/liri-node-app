@@ -9,20 +9,21 @@ var fs = require('fs');
 
 // To accomodate multi-word inputs
 if (process.argv[4]){
+	console.log("Concanting")
 	userParameter = "";
-	var inputParams = process.argv.slice(2);
+	var inputParams = process.argv.slice(3);
 	for (var i = 0; i < inputParams.length; i++){
 		if (i > 0){
 			userParameter = userParameter + " ";
 		}
 		userParameter = userParameter + inputParams[i];
 	};
+	console.log(userParameter)
 };
 
 function logResults(result){
 	fs.appendFile('./log.txt', result, function (err) {
 	  if (err) throw err;
-	  console.log('Saved!');
 	});
 };
 
@@ -57,6 +58,11 @@ function checkSpotify(){
 		spotify.search({ type: 'track', query: userParameter }, function(err, data) {
 		  if (err) {
 		    return console.log('Error occurred: ' + err);
+		  }
+
+		  if (!data){
+		  	console.log("Invalid input");
+		  	return;
 		  }
 		 
 			console.log("Artist: " + data.tracks.items[1].artists[0].name); 
@@ -94,6 +100,12 @@ function findMovie(){
 		  	console.log(error);
 		  	return;
 		};
+
+		if (!body){
+			console.log("Invalid input");
+		  	return;
+		}
+
 		body = JSON.parse(body);
 
 		console.log("Title: " + body.Title);
