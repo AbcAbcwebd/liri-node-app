@@ -49,19 +49,17 @@ function checkSpotify(){
 };
 
 function findMovie(){
-	var queryUrl = "http://www.omdbapi.com/?t=" + "Jaws" + "&y=&plot=short&apikey=40e9cece";
+	// Since this is a larger amount of information, a default API call will be used, to make maintenance easier.
+	if (!userParameter){
+		userParameter = "Mr+Nobody";
+	};
+	var queryUrl = "http://www.omdbapi.com/?t=" + userParameter + "&y=&plot=short&apikey=40e9cece";
 	request(queryUrl, function (error, response, body) {
 		if (error){
 		  	console.log(error);
 		  	return;
 		};
-//		console.log(body);
 		body = JSON.parse(body);
-
-/*		for (var key in body){
-			console.log(key)
-			console.log(body[key])
-		}; */
 
 		console.log("Title: " + body.Title);
 		console.log("Release year: " + body.Year);
@@ -73,7 +71,7 @@ function findMovie(){
 		console.log("Cast: " + body.Actors);
 	});
 };
-findMovie();
+
 
 /*
 // Interprets user's commands 
@@ -85,7 +83,7 @@ switch(command) {
         checkSpotify();
         break;
     case "movie-this":
-        code block
+        findMovie();
         break;
     case "do-what-it-says":
         code block
